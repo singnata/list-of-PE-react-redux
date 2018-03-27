@@ -1,9 +1,17 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
 
-import posts from './posts';
-import comments from './comments';
+import details from './reducerDetails';
+import update from './reducerUpdate';
+import list from './reducerList';
+import newEntr from './reducerNew';
 
-const rootReducer = combineReducers({posts, comments, routing: routerReducer});
-
-export default rootReducer;
+export const rootReducer = combineReducers({ 
+  list, 
+  details, 
+  update, 
+  newEntr, 
+  routing: routerReducer, 
+  form: formReducer 
+});

@@ -1,149 +1,197 @@
-@import '_normalize.styl'
-@import '_typography.styl'
-@import '_animations.styl'
+// Import all partials
+@require './_*.styl'
 
-body
-  background offwhite
 
-.photo-grid
-  display flex
-  flex-wrap wrap
-  max-width 1200px
-  margin 0 auto
+ul
+  list-style none
+  margin 0
+  padding 0
 
-.grid-figure
-  flex-basis calc(33.333% - 4rem)
-  flex-grow 1
-  flex-shrink 0
-  margin 0 2rem 2rem 2rem
-  padding 2rem
-  border 1px solid lightgray
-  background white
-  box-shadow 0 0 0 5px rgba(0,0,0,0.03);
-  position relative
-
-.single-photo
-  @extend .grid-figure
-  max-width 900px
-  margin 0 auto
-  display flex
-  background white
-  .grid-figure
-    box-shadow none
-    margin 0 2rem 0 0
-    border 0
-    padding 0
-    flex 1 0 60%
-    max-width 60%
-  .comments
-    flex 1 0 40%
-    max-width 40%
-  .grid-photo
-    width 100%
-    margin 0
-
-.grid-photo
-  width calc(100% + 4rem)
-  margin-left -2rem
-  margin-top -2rem
-  max-width none
-
-// Comments
-.remove-comment
+button, input[type=submit], li a, a
+  text-transform uppercase
   background none
-  border 0
-  line-height 1
-  opacity 0
-  &:hover
-    color red
-
-.comment
-  border-bottom 1px solid lightgrey
-  padding 0.5rem 0
-  p
-    font-size 1.2rem
-    margin 0
-  strong
-    color blue
-    margin-right 5px
-  &:hover
-    .remove-comment
-      opacity 1
- 
-.comment-form 
-  input, textarea
-    width 100%
-    border 0
-    font-size 1.3rem
-    padding 1rem 0
-    border-bottom 1px solid lightgrey
-    outline none
-    resize vertical
-
-
-.grid-photo-wrap
-  position relative
-  
-.likes-heart
-  background url(http://f.cl.ly/items/3Y373q2Q3J3Y1j203n0m/Bitmap-3.png) center no-repeat
-  background-size contain
-  font-size 2rem
-  padding 1rem
-  position absolute
-  color blue
-  left 50%
-  top 50%
-  pointer-events none
-  
-
-/*  
-  Buttons  
-*/
-
-.control-buttons
-  display flex
-  justify-content space-between
-    
-button, .button
-  border 2px solid lighten(grey, 90%)
-  background none
-  flex-basis 48%
-  display inline-block
-  line-height 2
-  text-decoration none
-  padding 5px
-  text-align center
-  font-size 15px
-  color blue
+  border 1px solid black
+  font-size 1.5rem
   transition all 0.2s
-  box-sizing padding-box
-  &:hover, &:focus
-    border-color blue
-    outline 0
-
-/*
-  Cowboy style speech bubble - you should probably use an SVG for this if you are doing more icons.
-*/
-.speech-bubble
-  size = 1.25rem
-  width size * 1.2
-  height size 
-  background blue
-  display inline-block
-  border-radius 50%
   position relative
+  &[disabled]
+    opacity 0.4
+    &:hover
+      cursor not-allowed
+
   &:after
-    display inline-block
-    position absolute
     content ''
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 size size 0
-    border-color: transparent blue transparent transparent
-    top 30%
+    z-index -1
+    display block
+    background black
+    position absolute
+    width 100%
+    height 0
     left 0
+    top 0
+    transition all 0.2s
+  &:hover, &:focus
+    color white
+    outline 0
+    &:after
+      height 100%
+  // variants
+  &.warning
+    &:after
+      background red
+  &.success
+    &:after
+      background green
+
+.form-group input
+  color rgb(0, 0, 153)
+
+input
+  font-size 1.2rem
+  text-transform uppercase
+  padding 10px 15px
+  border-radius 5px
+  border 1px
+  margin-right 50px
+  height 40px
+  width 250px
+  color rgb(0, 0, 153) !important
+  background-color rgb(204, 204, 204)
+  &:focus
+    border 2px solid rgb(0, 0, 102)
+    outline none
+    background-color rgb(242, 242, 242)
+
+
+#main
+  background-color #D4D4D4
+
+.mat-focused
+  color red!important
+
+.form-group
+  margin-top 25px
+  position relative
+
+.edit, .list, .details, .notfound, .new
+  text-align center
+  padding 30px 100px
+  color rgb(0, 0, 153)
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill 
+    background #d4d4d4 !important
+    
+button, li a, a
+  margin-top: 50px
+  padding: 10px 30px
+  border-radius: 5px
+  color rgb(0, 0, 153)
+  border 2px solid rgb(0, 0, 102)
+  position relative
+  &:hover 
+    color rgb(255, 255, 255)
+    background-color rgb(0, 0, 102)
+
+.form-button 
+  text-align center
+  padding 5px 150px
+
+.button-update 
+  margin 50px auto
+  display block
+
+a
+  text-decoration none
+
+.details-item
+  margin-top 20px
+  &:last-child
+    margin-bottom 50px
+
+.details-title 
+  margin-top 70px
+  margin-bottom 30px 
+
+.details a, .list a
+  display inline-block
+  margin-top 50px
+
+.list li
+  margin-top 15px
+  a, button
+    margin-left 20px
+
+.error-message, .error-required
+  font-size 10px
+  color #800000
+  position absolute
+  width 170px
+  height 20px
+  top 14px
+  right -110px
+
+.required input, .error-input
+  border 1px solid red
+
+.error-input
+  &:focus
+    border 2px solid red
+
+.required input
+  &:focus
+    border 2px solid red
+
+.required span.error-required
+  display inline-block
+
+.error-required
+  display none
+
+.isrequired
+  font-size 10px
+  position absolute
+  width 10px
+  height 10px
+  top 4px
+  right 37px
+
+.invisible
+  display none
+
+.visisble
+  display block
+
+.success-message 
+  width: 400px
+  padding: 50px 30px
+  background: #fff
+  border-radius: 10px
+  box-shadow 0 20px 75px rgba(0, 0, 0, 0.13)
+  color #666
+  margin 0 auto
+  transform translate(-50%, -50%)
+  position fixed
+  top 50%
+  left 50%
+  animation opacity-fadeIn 0.5s 0.2s forwards;
+
+.opacity 
+  filter blur(20px) grayscale(20%)
+
+@-o-keyframes opacity-fadeIn 
+  from 
+    opacity 0
+  
+  to 
+    opacity 1
+
+
+
+
+
+
 
   
-  
+
+
 
